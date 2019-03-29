@@ -1,0 +1,79 @@
+---
+title: "Capstone statistical analysis"
+output: pdf_document
+
+
+---
+#### INTRODUCTION
+Analysis of ctime data provids important infromation to understand the crime patterns. The Vancouver Police Department (VPD) releases categorized crime report every year since 2003. Finding the patterns in crime in Vancouver helps the local community and civilians who are interested in the crime trends and community development in the neighbouhood. Also, currently Vancouver has the highest growing real state rate in Canada. Providing the crime date might be insightfull for those new home owners who wonder what the highest crime neighbouhood is in thier potential home.  
+As a first step, the data was processed to see any statistical trend in the data. The given data from VPD contains character and numeric data mostly.  
+
+###ANALYSIS  
+#### HISTOGRAM  
+
+
+```{r, echo=FALSE}
+library(rmarkdown)
+```
+
+Summary of data  
+```{r, echo=FALSE}
+crime <- read.csv("crime-in-vancouver/crime.csv")
+summary(crime)
+library(ggplot2)
+```
+
+Histogram  Year vs. Crime Count  
+```{r, echo=FALSE}
+library(scales)
+
+#Year vs crime count
+
+ggplot(crime, aes(x = YEAR))+
+  geom_histogram(binwidth = 0.5)+
+  labs(x = "YEAR", y = "Crime count")+
+  scale_x_continuous(breaks=c(2004,2008,2012,2016))
+
+  
+```                                  
+
+```{r, echo=FALSE}
+#month vs Crime count histgram
+ggplot(crime, aes(x = MONTH))+
+  geom_histogram(binwidth = 0.5)+
+  labs(x = "MONTH", y = "Crime count")+
+  scale_x_continuous(breaks=c(2,4,6,8,10,12))
+
+```
+
+```{r, echo=FALSE}
+#day vs Crime count histgram
+ggplot(crime, aes(x = DAY))+
+  geom_histogram(binwidth = 0.5)+
+  labs(x = "DAY", y = "Crime count")+
+  scale_x_continuous(breaks=c(5,10,15,20,25,30))
+
+
+
+```
+#Car crime only by hour
+
+```{r, echo=FALSE}
+#HOUR
+ggplot(crime, aes(x = HOUR))+
+  geom_histogram(binwidth = 0.5)+
+  labs(x = "HOUR", y = "Crime count")+
+  scale_x_continuous(breaks=c(0,3,6,9,12,15,18,21))
+
+```
+
+
+
+
+
+
+
+
+
+
+
